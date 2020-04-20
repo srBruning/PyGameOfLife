@@ -5,13 +5,10 @@ from game import game_of_life
 import game_seed as gseed
 
 WHITE = (255, 255, 255)
-
-# plano vazio 
-SEED = gseed.random_game()
  
 pygame.init()
-
 screen = pygame.display.set_mode((550, 550))
+pygame.display.set_caption('PyGame of Life')
 
 def draw_matrix(matrix):
     '''
@@ -80,7 +77,6 @@ def loop_menu():
     txtMenu.append(font.render('space: run game of life', True, (255,0,0)))
     txtMenu.append(font.render('escape: exit', True, (255,0,0)))
     txtMenu.append(font.render('mouse: draw', True, (255,0,0)))
-    txtMenu.append(font.render('space: next', True, (0,0,255)))
 
     txtMenu.append(font.render('space: next empity game', True, (0,0,255)))
     txtMenu.append(font.render('q: seed glider', True, (0,0,255)))
@@ -111,8 +107,7 @@ def loop_menu():
                 loop_game(gseed.richs_p16())
             elif event.key == pygame.K_r:
                 loop_game(gseed.random_game())
-            else:
-                print(event.key)
+            elif (event.key == pygame.K_SPACE):
                 loop_game(gseed.empty_seed())
         pygame.display.flip()
         time.sleep(0.03)            
